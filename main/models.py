@@ -14,6 +14,19 @@ class Game(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_game(self):
+        return self.name
+
+class Position(models.Model):
+    game = models.ForeignKey(Game)
+    pass
+
+class LoLPosition(Position):
+    position = models.CharField(max_length=10)
+
+    def __unicode__(self):
+        return self.position
+
 class League(models.Model):
     league_name = models.CharField(max_length=50)
     league_abr = models.CharField(max_length=10, verbose_name="League Abbreviation")
@@ -30,6 +43,7 @@ class Team(models.Model):
     league = models.ForeignKey(League, related_name="teams")
     game = models.ForeignKey(Game, related_name="teams")
 
+
     def __unicode__(self):
         return self.team_name_abr
 
@@ -38,10 +52,17 @@ class Team(models.Model):
 class Player(models.Model):
     name = models.CharField(max_length=16)
     full_name = models.CharField(max_length=50)
-    position = models.CharField(max_length=10)
+    position = models.ForeignKey(LoLPosition)
     team = models.ForeignKey(Team)
     game = models.ForeignKey(Game)
+
     free_agent = models.BooleanField(default=True)
+
+    if game == "league of legends":
+        position = models.ForeignKey(LeaguePosition)
+
+    else:
+        position = models.ForeignKey(Position)
 
     def __unicode__(self):
         return self.name
