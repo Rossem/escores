@@ -1,4 +1,4 @@
-Template.mainBody.rendered = function()
+Template.navbar.rendered = function()
 {
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
