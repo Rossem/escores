@@ -34,5 +34,7 @@ function getMatch() {
 
     
 if (Meteor.isServer) {
+
    Meteor.setInterval(function() {getMatch();}, 2000);
 }
+
