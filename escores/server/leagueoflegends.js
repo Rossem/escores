@@ -3,16 +3,18 @@ matches = new Mongo.Collection("leagueoflegendsMatches");
 
 function getMatch() {
 
-    var url = "http://na.lolesports.com:80/api/match/" + match_id.findOne({game: "leagueoflegends"}).id.toString() + ".json";
+    var id = match_id.findOne({game: "leagueoflegends"}).id;
+    var url = "http://na.lolesports.com:80/api/match/" + id.toString() + ".json";
     console.log(url);
     var result = Meteor.http.get(url);
     var parsedData = JSON.parse(result.content);
 
     if (result.statusCode == 200) {
-        if (parsedData['isFinished'] != '0') {
+        if (parsedData['isFinished'] != '0' &&  matches.findOne({matchId: id}) == null) {
             var newId = match_id.findOne({game: "leagueoflegends"}).id + 1;
             match_id.update({game: "leagueoflegends"}, {$set:{id: newId}});
             matches.insert({
+                isFinished: parsedData['isFinished'],
                 tournament: parsedData['tournament'],
                 dateTime: parsedData['dateTime'],
                 winnerId: parsedData['winnerId'],
@@ -32,5 +34,5 @@ function getMatch() {
 
     
 if (Meteor.isServer) {
-   Meteor.setInterval(function() {getMatch();}, 60);
+   Meteor.setInterval(function() {getMatch();}, 2000);
 }
