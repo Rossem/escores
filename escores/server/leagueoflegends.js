@@ -1,6 +1,7 @@
 match_id = new Mongo.Collection("matchIds"); 
 matches = new Mongo.Collection("leagueoflegendsMatches");
 
+
 function getMatch() {
 
     var id = match_id.findOne({game: "leagueoflegends"}).id;
@@ -35,6 +36,6 @@ function getMatch() {
     
 if (Meteor.isServer) {
 
-   Meteor.setInterval(function() {getMatch();}, 2000);
+   Meteor.setInterval(function() {getMatch();}, 10000);
 }
 
