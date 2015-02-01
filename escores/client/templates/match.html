@@ -1,0 +1,53 @@
+<template name="match">
+	<div class = "row">
+		<div class = "col-md-8 col-xs-12 col-sm-12">
+			<div class="list-group">
+				<div class="list-group-item">
+				
+					<div class = "row">
+						<div class = "col-xs-1 col-md-3 col-sm-1">
+							{{this.tournament.name}} Round {{this.tournament.round}}
+						</div>	
+						
+						<div class = "col-xs-2 col-md-2 col-sm-2">
+							<a href="#" class="thumbnail">
+								<img src="http://na.lolesports.com{{blue.logoURL}}" style = "width: 64px">
+							</a>
+						</div>
+						<div class = "col-xs-1 col-md-2 col-sm-1">
+
+	
+							<h4 style="text-align: center"><span style="color: {{blueColor}}">{{blueWins}}</span> - 
+								<span style="color: {{redColor}}">{{redWins}}</span></h4> 
+
+						</div>
+						<div class = "col-xs-2 col-md-2 col-sm-2">
+							<a href="#" class="thumbnail">
+								<img src = "http://na.lolesports.com{{red.logoURL}}" style = "width: 64px"/>
+							</a>
+						</div>
+						<div class = "col-xs-1 col-md-3 col-sm-1">
+						</div>
+					</div>
+					<div class = "row">
+						<div class = "col-xs-1 col-md-3 col-sm-1">
+						</div>
+						<div class = "col-xs-1 col-md-2 col-sm-1">
+							<p style="text-align: center"> {{blue.name}}</p>
+						</div>
+						<div class = "col-xs-1 col-md-2 col-sm-1">
+							<p style = "text-align:center"> vs </p>
+						</div>
+						<div class = "col-xs-1 col-md-2 col-sm-1">
+							<p style="text-align:center"> {{red.name}}</p>
+						</div>
+						<div class = "col-xs-1 col-md-3 col-sm-1">
+						</div>
+						
+					</div>
+		
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
