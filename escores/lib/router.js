@@ -7,7 +7,7 @@ Router.configure({
 Router.route('/', {name: 'appBody'});
 Router.route('/leaguematches/:matchId',{
 	name: 'leaguematchPage',
-	data: function() { return matches.findOne({matchId: this.matchId});}
+	data: function() { return matches.findOne({matchId: this.params.matchId});}
 });
 Router.route('/leagueteams/:teamId',{
 	name: 'leagueteamPage',
